@@ -1,0 +1,5 @@
+static/*
+*.pyc
+.DS_Store
+venv/
+
