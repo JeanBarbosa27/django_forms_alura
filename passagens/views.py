@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from passagens.forms import PassagemForm, PessoaForm
 
 def index(request):
@@ -21,3 +21,5 @@ def revisao_consulta(request):
         else:
             contexto = { 'form': form, 'pessoa_form': pessoa_form }
             return render(request, 'index.html', contexto)
+
+    return redirect('index')
