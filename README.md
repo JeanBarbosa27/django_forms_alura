@@ -1,4 +1,4 @@
-# Curso Django Alura
+# Django Forms Alura
 Repositório criado para acompanhar a formação de Django da Alura
 
 **Readme em construção**
