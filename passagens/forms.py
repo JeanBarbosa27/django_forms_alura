@@ -3,17 +3,24 @@ from tempus_dominus.widgets import DatePicker
 from datetime import datetime
 from passagens.classe_viagem import tipos_de_classe
 from passagens.validations import *
+from passagens.models import Passagem, ClasseViagem, Pessoa
 
 
-class PassagemForm(forms.Form):
-    origem = forms.CharField(label='Origem:', max_length=100)
-    destino = forms.CharField(label='Destino:', max_length=100)
-    data_ida = forms.DateField(label='Ida:', widget=DatePicker())
-    data_volta = forms.DateField(label='Volta:', widget=DatePicker())
+class PassagemForm(forms.ModelForm):
     data_pesquisa = forms.DateField(label='Pesquisado em:', initial=datetime.today, disabled=True)
-    classe_viagem = forms.ChoiceField(label='Classe de vôo:', choices=tipos_de_classe)
-    informacoes = forms.CharField(label='Informações extras:', required=False, widget=forms.Textarea())
-    email = forms.EmailField(label='Email:', max_length=150)
+    class Meta:
+        model = Passagem
+        fields = '__all__'
+        labels = {
+            'data_ida': 'Data de ida',
+            'data_volta': 'Data de volta',
+            'classe_viagem': 'Classe do vôo',
+            'informacoes': 'Informações extras',
+        }
+        widgets = {
+            'data_ida': DatePicker(),
+            'data_volta': DatePicker(),
+        }
 
     def clean(self):
         lista_erros = {}
@@ -35,3 +42,8 @@ class PassagemForm(forms.Form):
                 mensagem_erro = lista_erros[erro]
                 self.add_error(erro, mensagem_erro)
 
+
+class PessoaForm(forms.ModelForm):
+    class Meta:
+        model = Pessoa
+        exclude = ['nome']

@@ -16,6 +16,17 @@
                 {% endfor %}
             </div>
         {% endfor %}
+        {% for field in pessoa_form.visible_fields %}
+            <div class="form-group">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field|add_class:"form-control"}}
+                {% for erro in field.errors %}
+                    <span class="alert alert-danger d-block mt-2 w-auto">
+                        {{erro}}
+                    </span>
+                {% endfor %}
+            </div>
+        {% endfor %}
         <button type="submit" class="btn btn-success">Enviar</button>
     </form>
 </section>
