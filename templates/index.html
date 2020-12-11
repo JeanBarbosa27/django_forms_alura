@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passagens</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<section class="container mt-5">
     <h1>Passagens</h1>
-</body>
-</html>
+    <form action="{% url 'minha_consulta' %}" method="post" class="col-8">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </form>
+</section>
+
+{% endblock %}
