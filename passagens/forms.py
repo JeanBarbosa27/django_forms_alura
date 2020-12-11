@@ -16,13 +16,19 @@ class PassagemForm(forms.Form):
     email = forms.EmailField(label='Email:', max_length=150)
 
     def clean(self):
+        lista_erros = {}
+
         origem = self.cleaned_data.get('origem')
         destino = self.cleaned_data.get('destino')
-        lista_erros = {}
+        data_ida = self.cleaned_data.get('data_ida')
+        data_volta = self.cleaned_data.get('data_volta')
+        data_pesquisa = self.cleaned_data.get('data_pesquisa')
 
         campo_tem_numero('origem', origem, lista_erros)
         campo_tem_numero('destino', destino, lista_erros)
         origem_e_destino_iguais(origem, destino, lista_erros)
+        data_ida_anterior(data_ida, data_pesquisa, lista_erros)
+        data_volta_anterior(data_ida, data_volta, lista_erros)
 
         if lista_erros is not None:
             for erro in lista_erros:
