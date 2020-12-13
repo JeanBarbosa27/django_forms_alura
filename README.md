@@ -6,7 +6,7 @@ Repositório criado para acompanhar a formação de Django da Alura
 ## Dependências do projeto
 
 ### Banco de dados
-Este projeto utiliza conexão com o banco de dados do PostgreSQL, que está configurado somente para acesso local, por isso é necessário que tenha esse servidor de banco de dados instalado e ativo na sua máquina antes de rodar o comando para rodar o projeto localmente.
+Como este projeto é somente para testes e estudos utiliza conexão com o banco de dados padrão que vem no start do Django com o SQLLite3, sendo assim não é necessário nenhuma insltação para salvar dados localmente.
 
 ### Versão do Python
 Ao clonar o repositório, certifique-se de que possui instalado na sua máquina a versão 3.7.4 do Python para evitar problemas de compatibilidade, logo é recomendável utilzar a versão que foi  utilizada originalmente no projeto. Nesses casos é interessante usar um administrador de versões, como o pyenv, por exemplo.

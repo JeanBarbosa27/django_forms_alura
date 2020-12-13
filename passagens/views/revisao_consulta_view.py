@@ -1,17 +1,19 @@
+from django.views import View
 from django.shortcuts import render, redirect
 from passagens.forms import PassagemForm, PessoaForm
 
-def index(request):
-    form = PassagemForm()
-    pessoa_form = PessoaForm()
 
-    contexto = { 'form': form, 'pessoa_form': pessoa_form }
+class RevisaoConsultaView(View):
+    """Administra renderização da página minha consulta conforme método da requisição"""
 
-    return render(request, 'index.html', contexto)
+    def get(self, request):
+        """Quando a requisição tiver o método get, volta direto para a página inicial"""
 
+        return redirect('index')
 
-def revisao_consulta(request):
-    if request.method == 'POST':
+    def post(self, request):
+        """Quando a requisição tiver o método post, exibe na página as informações preenchidas na página inicial"""
+
         form = PassagemForm(request.POST)
         pessoa_form = PessoaForm(request.POST)
 
@@ -21,5 +23,3 @@ def revisao_consulta(request):
         else:
             contexto = { 'form': form, 'pessoa_form': pessoa_form }
             return render(request, 'index.html', contexto)
-
-    return redirect('index')
